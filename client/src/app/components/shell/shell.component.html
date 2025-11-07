@@ -7,7 +7,7 @@
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="(isHandset$ | async) === false"
   >
-    <mat-toolbar>Menu de interação</mat-toolbar>
+    <mat-toolbar>MENU</mat-toolbar>
     <mat-nav-list>
       @for(item of itensNavBar;track $index) {
       <a mat-list-item [routerLink]="item.link">
@@ -24,8 +24,10 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       }
-      <span>Medicamental</span>
+      <span>ORGANIZA - MED</span>
     </mat-toolbar>
-    <!-- Add Content Here -->
+    <div class="container-fluid py-3">
+      <ng-content></ng-content>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

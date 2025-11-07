@@ -8,7 +8,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-shell',
@@ -35,8 +35,8 @@ export class ShellComponent {
     );
   itensNavBar = [
     { titulo: 'Início', icone: 'home', link: '/inicio' },
-    { titulo: 'Médico', icone: 'medical_information', link: '/medico' },
-    { titulo: 'Paciente', icone: 'personal_injury', link: '/paciente' },
+    { titulo: 'Médicos', icone: 'medical_information', link: '/medico' },
+    { titulo: 'Pacientes', icone: 'personal_injury', link: '/paciente' },
     { titulo: 'Agenda', icone: 'pending_actions', link: '/agenda' },
   ];
 }

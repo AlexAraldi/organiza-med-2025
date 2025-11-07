@@ -1,0 +1,75 @@
+<mat-card>
+  <mat-card-content>
+    <div class="row justify content center align-items-center g-3 p-3">
+      <div class="col">
+        <h3>Crie e organize a agenda com facilidade</h3>
+
+        <p class="mt-4 fs-6">Otimize o tempo entre consultas e cirurgias.</p>
+        <p class="mt-4 fs-6">Organiza-Med é o seu aliado do dia a dia.</p>
+
+        <mat-list class="fs-6">
+          <mat-list-item>
+            <mat-icon matListItemIcon>label_important</mat-icon>Cadastre seus pacientes em segundos.
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon matListItemIcon>label_important</mat-icon>Cadastro médico rapido e seguro.
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon matListItemIcon>label_important</mat-icon>Organize as consultas e cirurgias.
+          </mat-list-item>
+        </mat-list>
+      </div>
+
+      <div class="col-lg-3">
+        <img class="img-fluid" src="/img/inicio-agenda.svg" alt="equipe medica" />
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<div class="row g-3 my-2">
+  <div class="col-lg-3 card-column">
+    <mat-card class="classroom-card">
+      <a routerLink="/medico" class="card-hero" style="--hero-url: url('/img/imagem-card.jpeg')">
+        <h4 class="card-hero__title">Médicos</h4>
+      </a>
+      <mat-card-content></mat-card-content>
+      <mat-divider></mat-divider>
+      <mat-card-actions align="end">
+        <a routerLink="/medico" mat-icon-button>
+          <mat-icon>arrow_outward</mat-icon>
+        </a>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <div class="col-lg-3 card-column">
+    <mat-card class="classroom-card">
+      <a routerLink="/paciente" class="card-hero" style="--hero-url: url('/img/imagem-card.jpeg')">
+        <h4 class="card-hero__title">Pacientes</h4>
+      </a>
+      <mat-card-content></mat-card-content>
+      <mat-divider></mat-divider>
+      <mat-card-actions align="end">
+        <a routerLink="/paciente" mat-icon-button>
+          <mat-icon>arrow_outward</mat-icon>
+        </a>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <div class="col-lg-3 card-column">
+    <mat-card class="classroom-card">
+      <a routerLink="/agenda" class="card-hero" style="--hero-url: url('/img/imagem-card.jpeg')">
+        <h4 class="card-hero__title">Agenda</h4>
+      </a>
+      <mat-card-content></mat-card-content>
+      <mat-divider></mat-divider>
+      <mat-card-actions align="end">
+        <a routerLink="/agenda" mat-icon-button>
+          <mat-icon>arrow_outward</mat-icon>
+        </a>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
