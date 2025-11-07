@@ -11,6 +11,10 @@ export const routes: Routes = [
     path: 'inicio',
     loadComponent: () => import('./components/inicio/inicio').then((c) => c.Inicio),
   },
+  {
+    path: 'medico',
+    loadChildren: () => import('./components/medicos/medico.routes').then((m) => m.medicoRoutes),
+  },
 ];
 
 export const appConfig: ApplicationConfig = {
