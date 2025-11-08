@@ -25,6 +25,17 @@
       </button>
       }
       <span>ORGANIZA - MED</span>
+      <button mat-raised-button [matMenuTriggerFor]="opcoesUsuario" class="ms-auto">
+        {{ usuario.username }}
+        <mat-icon>person</mat-icon>
+      </button>
+
+      <mat-menu #opcoesUsuario="matMenu">
+        <button mat-menu-item style="min-width: 50px" (click)="logoutRequisitado.emit()">
+          <mat-icon>arrow_backward</mat-icon>
+          Logout
+        </button>
+      </mat-menu>
     </mat-toolbar>
     <div class="container-fluid py-3">
       <ng-content></ng-content>

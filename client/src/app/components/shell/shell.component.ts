@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { AsyncPipe } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -8,7 +8,10 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterLink } from '@angular/router';
+import { UsuarioAutenticadoModel } from '../auth/auth.models';
+import { MatMenu, MatMenuModule } from '@angular/material/menu';
+import { OuterExpressionKinds } from 'typescript';
 
 @Component({
   selector: 'app-shell',
@@ -20,6 +23,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
     MatSidenavModule,
     MatListModule,
     MatIconModule,
+    MatMenuModule,
     AsyncPipe,
     RouterLink,
   ],
@@ -27,16 +31,19 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 export class ShellComponent {
   private breakpointObserver = inject(BreakpointObserver);
 
-  isHandset$: Observable<boolean> = this.breakpointObserver
+  public isHandset$: Observable<boolean> = this.breakpointObserver
     .observe([Breakpoints.XSmall, Breakpoints.Small, Breakpoints.Handset])
     .pipe(
       map((result) => result.matches),
       shareReplay()
     );
-  itensNavBar = [
+  public itensNavBar = [
     { titulo: 'Início', icone: 'home', link: '/inicio' },
     { titulo: 'Médicos', icone: 'medical_information', link: '/medico' },
     { titulo: 'Pacientes', icone: 'personal_injury', link: '/paciente' },
     { titulo: 'Agenda', icone: 'pending_actions', link: '/agenda' },
   ];
+
+  @Input({ required: true }) usuario!: UsuarioAutenticadoModel;
+  @Output() logoutRequisitado = new EventEmitter<void>();
 }
