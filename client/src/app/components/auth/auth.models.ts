@@ -1,11 +1,11 @@
 export interface RegistroModel {
-  username: string;
+  userName: string;
   email: string;
   password: string;
 }
 
 export interface LoginModel {
-  username: string;
+  userName: string;
   password: string;
 }
 
@@ -17,6 +17,6 @@ export interface AccessTokenModel {
 
 export interface UsuarioAutenticadoModel {
   id: string;
-  username: string;
+  userName: string;
   email: string;
 }

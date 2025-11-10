@@ -1,20 +1,27 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, shareReplay } from 'rxjs';
-import { AccessTokenModel } from './auth.models';
+import { inject, Injectable } from '@angular/core';
+import { BehaviorSubject, Observable, shareReplay, tap } from 'rxjs';
+import { AccessTokenModel, RegistroModel } from './auth.models';
+import { environment } from '../../../environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class AuthService {
-  public readonly accessTokenSubject$ = new BehaviorSubject<AccessTokenModel | undefined>({
-    chave: 'abc123',
-    expiracao: new Date('2025-12-31T23:59:59.999Z'),
-    usuario: {
-      id: '00000000-0000-0000-0000-000000000001',
-      username: 'Alex teste',
-      email: 'teste@gmail.com',
-    },
-  });
+  private readonly http = inject(HttpClient);
+  private readonly apiUrl = environment.apiUrl + '/auth';
+
+  public readonly accessTokenSubject$ = new BehaviorSubject<AccessTokenModel | undefined>(
+    undefined
+  );
 
   public readonly accessToken$ = this.accessTokenSubject$.pipe(
     shareReplay({ bufferSize: 1, refCount: true })
   );
+
+  public registro(registroModel: RegistroModel): Observable<AccessTokenModel> {
+    const urlCompleto = `${this.apiUrl}/registrar`;
+
+    return this.http
+      .post<AccessTokenModel>(urlCompleto, registroModel)
+      .pipe(tap((token) => this.accessTokenSubject$.next(token)));
+  }
 }

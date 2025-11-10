@@ -11,7 +11,6 @@ import { map, shareReplay } from 'rxjs/operators';
 import { RouterLink } from '@angular/router';
 import { UsuarioAutenticadoModel } from '../auth/auth.models';
 import { MatMenu, MatMenuModule } from '@angular/material/menu';
-import { OuterExpressionKinds } from 'typescript';
 
 @Component({
   selector: 'app-shell',
