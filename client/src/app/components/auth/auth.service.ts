@@ -1,8 +1,9 @@
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, shareReplay, tap } from 'rxjs';
-import { AccessTokenModel, RegistroModel } from './auth.models';
+import { AccessTokenModel, LoginModel, RegistroModel } from './auth.models';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { obterOpcoesHeaderAutorizacao } from '../../util/obter-header-autorizacao';
 
 @Injectable()
 export class AuthService {
@@ -23,5 +24,24 @@ export class AuthService {
     return this.http
       .post<AccessTokenModel>(urlCompleto, registroModel)
       .pipe(tap((token) => this.accessTokenSubject$.next(token)));
+  }
+
+  public login(loginModel: LoginModel): Observable<AccessTokenModel> {
+    const urlCompleto = `${this.apiUrl}/autenticar`;
+    return this.http
+      .post<AccessTokenModel>(urlCompleto, loginModel)
+      .pipe(tap((token) => this.accessTokenSubject$.next(token)));
+  }
+
+  public sair(): Observable<null> {
+    const urlCompleto = `${this.apiUrl}/sair`;
+
+    return this.http
+      .post<null>(
+        urlCompleto,
+        {},
+        obterOpcoesHeaderAutorizacao(this.accessTokenSubject$.getValue())
+      )
+      .pipe(tap(() => this.accessTokenSubject$.next(undefined)));
   }
 }
