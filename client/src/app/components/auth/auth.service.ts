@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, shareReplay, tap } from 'rxjs';
+import { BehaviorSubject, map, Observable, shareReplay, tap } from 'rxjs';
 import { AccessTokenModel, LoginModel, RegistroModel } from './auth.models';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
@@ -21,16 +21,18 @@ export class AuthService {
   public registro(registroModel: RegistroModel): Observable<AccessTokenModel> {
     const urlCompleto = `${this.apiUrl}/registrar`;
 
-    return this.http
-      .post<AccessTokenModel>(urlCompleto, registroModel)
-      .pipe(tap((token) => this.accessTokenSubject$.next(token)));
+    return this.http.post<any>(urlCompleto, registroModel).pipe(
+      map((res) => res.dados),
+      tap((token) => this.accessTokenSubject$.next(token))
+    );
   }
 
   public login(loginModel: LoginModel): Observable<AccessTokenModel> {
     const urlCompleto = `${this.apiUrl}/autenticar`;
-    return this.http
-      .post<AccessTokenModel>(urlCompleto, loginModel)
-      .pipe(tap((token) => this.accessTokenSubject$.next(token)));
+    return this.http.post<any>(urlCompleto, loginModel).pipe(
+      map((res) => res.dados),
+      tap((token) => this.accessTokenSubject$.next(token))
+    );
   }
 
   public sair(): Observable<null> {

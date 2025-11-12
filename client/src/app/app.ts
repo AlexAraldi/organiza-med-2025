@@ -5,7 +5,7 @@ import { ShellComponent } from './components/shell/shell.component';
 import { Router, RouterOutlet } from '@angular/router';
 import { AuthService } from './components/auth/auth.service';
 import { AsyncPipe } from '@angular/common';
-import { PartialObserver } from 'rxjs';
+import { PartialObserver, tap } from 'rxjs';
 import { NotificacaoService } from './components/shared/notificacao.service';
 
 @Component({
@@ -25,12 +25,14 @@ export class App {
   protected readonly router = inject(Router);
   protected readonly authService = inject(AuthService);
   protected readonly notificacaoService = inject(NotificacaoService);
-  protected readonly accessToken$ = this.authService.accessToken$;
+  protected readonly accessToken$ = this.authService.accessToken$.pipe(
+    tap((token) => console.log(token))
+  );
 
   public logout() {
     const logoutObserver: PartialObserver<null> = {
       error: (err) => this.notificacaoService.erro(err.message),
-      complete: () => this.router.navigate(['/auth/login']),
+      complete: () => this.router.navigate(['/auth/autenticar']),
     };
 
     this.authService.sair().subscribe(logoutObserver);

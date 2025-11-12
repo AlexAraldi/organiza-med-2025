@@ -1,12 +1,11 @@
-import { provideHttpClient } from '@angular/common/http';
 import {
   ApplicationConfig,
   inject,
   provideBrowserGlobalErrorListeners,
   provideZonelessChangeDetection,
 } from '@angular/core';
-import { CanActivate, CanActivateFn, provideRouter, Router, Routes } from '@angular/router';
-import { providerAuth } from './components/auth/auth.provider';
+import { CanActivateFn, provideRouter, Router, Routes } from '@angular/router';
+import { provideAuth } from './components/auth/auth.provider';
 import { provideNotifications } from './components/shared/noticacao.provider';
 import { AuthService } from './components/auth/auth.service';
 import { map, take } from 'rxjs';
@@ -36,17 +35,17 @@ export const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () => import('./components/auth/auth.routes').then((m) => m.authRoutes),
-    canActivate: [usuarioDesconhecidoGuard],
+    canMatch: [usuarioDesconhecidoGuard],
   },
   {
     path: 'inicio',
     loadComponent: () => import('./components/inicio/inicio').then((c) => c.Inicio),
-    canActivate: [usuarioAutenticadoGuard],
+    canMatch: [usuarioAutenticadoGuard],
   },
   {
     path: 'medico',
     loadChildren: () => import('./components/medicos/medico.routes').then((m) => m.medicoRoutes),
-    canActivate: [usuarioAutenticadoGuard],
+    canMatch: [usuarioAutenticadoGuard],
   },
 ];
 
@@ -55,8 +54,7 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
     provideRouter(routes),
-    provideHttpClient(),
     provideNotifications(),
-    providerAuth(),
+    provideAuth(),
   ],
 };
