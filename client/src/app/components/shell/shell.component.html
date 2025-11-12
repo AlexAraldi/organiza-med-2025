@@ -7,7 +7,7 @@
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="(isHandset$ | async) === false"
   >
-    <mat-toolbar>MENU</mat-toolbar>
+    <mat-toolbar>ORGANIZA - MED</mat-toolbar>
     <mat-nav-list>
       @for(item of itensNavBar;track $index) {
       <a mat-list-item [routerLink]="item.link">
@@ -24,7 +24,7 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       }
-      <span>ORGANIZA - MED</span>
+      <mat-icon></mat-icon>
       <button mat-raised-button [matMenuTriggerFor]="opcoesUsuario" class="ms-auto">
         <mat-icon>person</mat-icon>
         {{ usuario.userName }}

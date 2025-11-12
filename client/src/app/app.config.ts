@@ -43,8 +43,14 @@ export const routes: Routes = [
     canMatch: [usuarioAutenticadoGuard],
   },
   {
-    path: 'medico',
+    path: 'medicos',
     loadChildren: () => import('./components/medicos/medico.routes').then((m) => m.medicoRoutes),
+    canMatch: [usuarioAutenticadoGuard],
+  },
+  {
+    path: 'pacientes',
+    loadChildren: () =>
+      import('./components/pacientes/paciente.routes').then((m) => m.pacienteRoutes),
     canMatch: [usuarioAutenticadoGuard],
   },
 ];

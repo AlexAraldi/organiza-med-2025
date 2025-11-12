@@ -38,9 +38,9 @@ export class ShellComponent {
     );
   public itensNavBar = [
     { titulo: 'Início', icone: 'home', link: '/inicio' },
-    { titulo: 'Médicos', icone: 'medical_information', link: '/medico' },
-    { titulo: 'Pacientes', icone: 'personal_injury', link: '/paciente' },
-    { titulo: 'Agenda', icone: 'pending_actions', link: '/agenda' },
+    { titulo: 'Médicos', icone: 'medical_information', link: '/medicos' },
+    { titulo: 'Pacientes', icone: 'personal_injury', link: '/pacientes' },
+    { titulo: 'Atividades', icone: 'pending_actions', link: '/atividades' },
   ];
 
   @Input({ required: true }) usuario!: UsuarioAutenticadoModel;

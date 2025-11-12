@@ -9,7 +9,6 @@ import {
   DetalhesMedicoModel,
   EditarMedicoModel,
   EditarMedicoResponseModel,
-  ListarMedicosApiResponseModel,
   ListarMedicosModel,
 } from './medico.models';
 
