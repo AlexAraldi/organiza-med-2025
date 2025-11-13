@@ -1,17 +1,23 @@
-import { Component, inject } from '@angular/core';
-import { MedicoService } from '../medico.service';
+import { filter, map } from 'rxjs';
+
 import { AsyncPipe } from '@angular/common';
+import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { RouterLink } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ListarMedicosModel } from '../medico.models';
 
 @Component({
   selector: 'app-listar-medicos',
-  imports: [MatButtonModule, MatIconModule, RouterLink, AsyncPipe, MatCardModule],
+  imports: [MatButtonModule, MatIconModule, MatCardModule, RouterLink, AsyncPipe],
   templateUrl: './listar-medicos.html',
 })
 export class ListarMedicos {
-  protected readonly medicoService = inject(MedicoService);
-  protected readonly medicos$ = this.medicoService.selecionarTodos();
+  protected readonly route = inject(ActivatedRoute);
+
+  protected readonly medicos$ = this.route.data.pipe(
+    filter((data) => data['medicos']),
+    map((data) => data['medicos'] as ListarMedicosModel[])
+  );
 }

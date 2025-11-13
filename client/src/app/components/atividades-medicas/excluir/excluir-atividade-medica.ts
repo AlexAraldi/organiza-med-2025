@@ -10,12 +10,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
-import { DetalhesMedicoModel } from '../medico.models';
-import { MedicoService } from '../medico.service';
 import { NotificacaoService } from '../../shared/notificacao.service';
+import { DetalhesAtividadeMedicaModel } from '../atividade-medica.models';
+import { AtividadeMedicaService } from '../atividade-medica.service';
 
 @Component({
-  selector: 'app-excluir-medico',
+  selector: 'app-excluir-atividade-medica',
   imports: [
     MatCardModule,
     MatButtonModule,
@@ -26,17 +26,17 @@ import { NotificacaoService } from '../../shared/notificacao.service';
     AsyncPipe,
     FormsModule,
   ],
-  templateUrl: './excluir-medico.html',
+  templateUrl: './excluir-atividade-medica.html',
 })
-export class ExcluirMedico {
+export class ExcluirAtividadeMedica {
   protected readonly route = inject(ActivatedRoute);
   protected readonly router = inject(Router);
-  protected readonly medicoService = inject(MedicoService);
+  protected readonly atividadeMedicaService = inject(AtividadeMedicaService);
   protected readonly notificacaoService = inject(NotificacaoService);
 
-  protected readonly medico$ = this.route.data.pipe(
-    filter((data) => data['medico']),
-    map((data) => data['medicos'] as DetalhesMedicoModel),
+  protected readonly atividadeMedica$ = this.route.data.pipe(
+    filter((data) => data['atividadeMedica']),
+    map((data) => data['atividadeMedica'] as DetalhesAtividadeMedicaModel),
     shareReplay({ bufferSize: 1, refCount: true })
   );
 
@@ -44,13 +44,13 @@ export class ExcluirMedico {
     const exclusaoObserver: Observer<null> = {
       next: () => this.notificacaoService.sucesso(`O registro foi excluído com sucesso!`),
       error: (err) => this.notificacaoService.erro(err),
-      complete: () => this.router.navigate(['/medicos']),
+      complete: () => this.router.navigate(['/atividades-medicas']),
     };
 
-    this.medico$
+    this.atividadeMedica$
       .pipe(
         take(1),
-        switchMap((medico) => this.medicoService.excluir(medico.id))
+        switchMap((atividadeMedica) => this.atividadeMedicaService.excluir(atividadeMedica.id))
       )
       .subscribe(exclusaoObserver);
   }

@@ -1,6 +1,6 @@
 <section class="mx-auto max-w-screen-xl px-4">
   <div class="py-6">
-    <h2 class="text-2xl font-semibold">Cadastro de Médicos</h2>
+    <h2 class="text-2xl font-semibold">Listagem de Atividades Médicas</h2>
 
     <!-- Ações -->
     <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-6 gap-2">
@@ -16,26 +16,37 @@
 
     <hr class="my-6 border-muted/30" />
 
-    <!-- Cards de medicos -->
+    <!-- Cards de Atividades Médicas -->
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-      @for (medico of medicos$ | async; track $index) {
+      @for (atividadeMedica of atividadesMedicas$ | async; track $index) {
       <mat-card class="p-3 rounded-2xl shadow-sm">
         <mat-card-header class="pb-2">
           <mat-card-title class="text-lg font-medium">
-            {{ medico.nome }}
+            {{ atividadeMedica.tipoAtividade }} de {{ atividadeMedica.paciente.nome }}
           </mat-card-title>
         </mat-card-header>
 
         <mat-card-content class="min-h-[40px] mt-3">
-          <p><span class="font-medium">CRM:</span> {{ medico.crm }}</p>
+          <p>
+            <span class="font-medium">Médico(s):</span>
+            {{ mapearNomesDeMedicos(atividadeMedica.medicos).join(', ') }}
+          </p>
+          <p>
+            <span class="font-medium">Início:</span>
+            {{ atividadeMedica.inicio | date : 'short' }}
+          </p>
+          <p>
+            <span class="font-medium">Término:</span>
+            {{ atividadeMedica.termino | date : 'short' }}
+          </p>
         </mat-card-content>
 
         <mat-card-actions align="end" class="flex items-center justify-end gap-2 pt-2">
-          <a [routerLink]="['editar', medico.id]" mat-icon-button aria-label="Editar">
+          <a [routerLink]="['editar', atividadeMedica.id]" mat-icon-button aria-label="Editar">
             <mat-icon>edit</mat-icon>
           </a>
 
-          <a [routerLink]="['excluir', medico.id]" mat-icon-button aria-label="Excluir">
+          <a [routerLink]="['excluir', atividadeMedica.id]" mat-icon-button aria-label="Excluir">
             <mat-icon>delete</mat-icon>
           </a>
         </mat-card-actions>

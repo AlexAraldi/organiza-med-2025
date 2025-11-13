@@ -9,8 +9,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { NotificacaoService } from '../../shared/notificacao.service';
 
+import { NotificacaoService } from '../../shared/notificacao.service';
 import {
   DetalhesMedicoModel,
   EditarMedicoModel,

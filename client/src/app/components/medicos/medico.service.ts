@@ -21,7 +21,7 @@ export class MedicoService {
   private readonly apiUrl = environment.apiUrl + '/medicos';
 
   public cadastrar(medicoModel: CadastrarMedicoModel): Observable<CadastrarMedicoResponseModel> {
-    return this.http.get<any>(this.apiUrl).pipe(
+    return this.http.post<any>(this.apiUrl, medicoModel).pipe(
       map((res) => res.dados),
       map((res) => res.registros)
     );
@@ -33,7 +33,7 @@ export class MedicoService {
   ): Observable<EditarMedicoResponseModel> {
     const urlCompleto = `${this.apiUrl}/${id}`;
 
-    return this.http.get<any>(this.apiUrl).pipe(
+    return this.http.put<any>(this.apiUrl, editarMedicoModel).pipe(
       map((res) => res.dados),
       map((res) => res.registros)
     );

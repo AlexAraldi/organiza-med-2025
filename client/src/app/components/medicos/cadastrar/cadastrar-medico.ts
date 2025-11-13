@@ -48,17 +48,17 @@ export class CadastrarMedico {
   public cadastrar() {
     if (this.medicoForm.invalid) return;
 
-    const medicoModel: CadastrarMedicoModel = this.medicoForm.value;
+    const cadastrarMedicoModel: CadastrarMedicoModel = this.medicoForm.value;
 
     const cadastroObserver: Observer<CadastrarMedicoResponseModel> = {
       next: () =>
         this.notificacaoService.sucesso(
-          `O registro "${medicoModel.nome}" foi cadastrado com sucesso!`
+          `O registro "${cadastrarMedicoModel.nome}" foi cadastrado com sucesso!`
         ),
       error: (err) => this.notificacaoService.erro(err),
       complete: () => this.router.navigate(['/medicos']),
     };
 
-    this.medicoService.cadastrar(medicoModel).subscribe(cadastroObserver);
+    this.medicoService.cadastrar(cadastrarMedicoModel).subscribe(cadastroObserver);
   }
 }
