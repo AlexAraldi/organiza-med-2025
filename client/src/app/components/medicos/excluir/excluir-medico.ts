@@ -36,7 +36,7 @@ export class ExcluirMedico {
 
   protected readonly medico$ = this.route.data.pipe(
     filter((data) => data['medico']),
-    map((data) => data['medicos'] as DetalhesMedicoModel),
+    map((data) => data['medico'] as DetalhesMedicoModel),
     shareReplay({ bufferSize: 1, refCount: true })
   );
 

@@ -1,3 +1,5 @@
+import { parse } from 'date-fns';
+
 import { filter, map, Observer, shareReplay } from 'rxjs';
 
 import { AsyncPipe } from '@angular/common';
@@ -116,7 +118,4 @@ export class CadastrarAtividadeMedica {
 
     this.atividadeMedicaService.cadastrar(atividadeMedicaModel).subscribe(cadastroObserver);
   }
-}
-function parse(value: any, arg1: string, arg2: string): Date {
-  throw new Error('Function not implemented.');
 }

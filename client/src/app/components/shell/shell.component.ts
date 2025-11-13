@@ -40,7 +40,7 @@ export class ShellComponent {
     { titulo: 'Início', icone: 'home', link: '/inicio' },
     { titulo: 'Médicos', icone: 'medical_information', link: '/medicos' },
     { titulo: 'Pacientes', icone: 'personal_injury', link: '/pacientes' },
-    { titulo: 'Atividades', icone: 'pending_actions', link: '/atividades' },
+    { titulo: 'Atividades', icone: 'pending_actions', link: '/atividades-medicas' },
   ];
 
   @Input({ required: true }) usuario!: UsuarioAutenticadoModel;

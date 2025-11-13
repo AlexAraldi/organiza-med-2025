@@ -9,6 +9,7 @@ import { provideAuth } from './components/auth/auth.provider';
 import { provideNotifications } from './components/shared/noticacao.provider';
 import { AuthService } from './components/auth/auth.service';
 import { map, take } from 'rxjs';
+import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 
 const usuarioDesconhecidoGuard: CanActivateFn = () => {
   const authService = inject(AuthService);
@@ -53,12 +54,14 @@ export const routes: Routes = [
       import('./components/pacientes/paciente.routes').then((m) => m.pacienteRoutes),
     canMatch: [usuarioAutenticadoGuard],
   },
-  // {
-  //   path: 'atividades',
-  //   loadChildren: () =>
-  //     import('./components/atividades/atividade.routes').then((m) => m.atividadeRoutes),
-  //   canMatch: [usuarioAutenticadoGuard],
-  // },
+  {
+    path: 'atividades-medicas',
+    loadChildren: () =>
+      import('./components/atividades-medicas/atividade-medica.routes').then(
+        (c) => c.atividadeMedicaRoutes
+      ),
+    canMatch: [usuarioAutenticadoGuard],
+  },
 ];
 
 export const appConfig: ApplicationConfig = {
@@ -66,6 +69,7 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
     provideRouter(routes),
+    provideClientHydration(withEventReplay()),
     provideNotifications(),
     provideAuth(),
   ],

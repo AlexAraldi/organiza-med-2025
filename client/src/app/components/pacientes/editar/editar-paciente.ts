@@ -10,13 +10,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
+import { NotificacaoService } from '../../shared/notificacao.service';
 import {
   DetalhesPacienteModel,
   EditarPacienteModel,
   EditarPacienteResponseModel,
 } from '../paciente.models';
 import { PacienteService } from '../paciente.service';
-import { NotificacaoService } from '../../shared/notificacao.service';
 
 @Component({
   selector: 'app-editar-paciente',

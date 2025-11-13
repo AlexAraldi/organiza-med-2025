@@ -10,7 +10,6 @@ import {
   DetalhesPacienteModel,
   EditarPacienteModel,
   EditarPacienteResponseModel,
-  ListarPacientesApiResponseModel,
   ListarPacientesModel,
 } from './paciente.models';
 
@@ -34,7 +33,7 @@ export class PacienteService {
   ): Observable<EditarPacienteResponseModel> {
     const urlCompleto = `${this.apiUrl}/${id}`;
 
-    return this.http.put<any>(this.apiUrl, editarPacienteModel).pipe(
+    return this.http.put<any>(urlCompleto, editarPacienteModel).pipe(
       map((res) => res.dados),
       map((res) => res.registros)
     );
@@ -42,17 +41,13 @@ export class PacienteService {
 
   public excluir(id: string): Observable<null> {
     const urlCompleto = `${this.apiUrl}/${id}`;
-
     return this.http.delete<null>(urlCompleto);
   }
 
   public selecionarPorId(id: string): Observable<DetalhesPacienteModel> {
     const urlCompleto = `${this.apiUrl}/${id}`;
 
-    return this.http.get<any>(this.apiUrl).pipe(
-      map((res) => res.dados),
-      map((res) => res.registros)
-    );
+    return this.http.get<any>(urlCompleto).pipe(map((res) => res.dados));
   }
 
   public selecionarTodos(): Observable<ListarPacientesModel[]> {

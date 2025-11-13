@@ -36,7 +36,7 @@ export class AtividadeMedicaService {
   ): Observable<EditarAtividadeMedicaResponseModel> {
     const urlCompleto = `${this.apiUrl}/${id}`;
 
-    return this.http.put<any>(this.apiUrl, editarAtividadeMedicaModel).pipe(
+    return this.http.put<any>(urlCompleto, editarAtividadeMedicaModel).pipe(
       map((res) => res.dados),
       map((res) => res.registros)
     );
@@ -51,10 +51,7 @@ export class AtividadeMedicaService {
   public selecionarPorId(id: string): Observable<DetalhesAtividadeMedicaModel> {
     const urlCompleto = `${this.apiUrl}/${id}`;
 
-    return this.http.get<any>(this.apiUrl).pipe(
-      map((res) => res.dados),
-      map((res) => res.registros)
-    );
+    return this.http.get<any>(urlCompleto).pipe(map((res) => res.dados));
   }
 
   public selecionarTodos(): Observable<ListarAtividadesMedicasModel[]> {
@@ -69,9 +66,6 @@ export class AtividadeMedicaService {
   ): Observable<ListarAtividadesMedicasModel[]> {
     const urlCompleto = `${this.apiUrl}?tipoAtividade=${tipoAtividade.toLowerCase()}`;
 
-    return this.http.get<any>(this.apiUrl).pipe(
-      map((res) => res.dados),
-      map((res) => res.registros)
-    );
+    return this.http.get<any>(this.apiUrl).pipe(map((res) => res.dados));
   }
 }
