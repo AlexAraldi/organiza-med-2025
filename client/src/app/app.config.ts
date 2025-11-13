@@ -53,6 +53,12 @@ export const routes: Routes = [
       import('./components/pacientes/paciente.routes').then((m) => m.pacienteRoutes),
     canMatch: [usuarioAutenticadoGuard],
   },
+  {
+    path: 'atividades',
+    loadChildren: () =>
+      import('./components/atividades/atividade.routes').then((m) => m.atividadeRoutes),
+    canMatch: [usuarioAutenticadoGuard],
+  },
 ];
 
 export const appConfig: ApplicationConfig = {
