@@ -26,19 +26,10 @@ jobs:
           dotnet-version: '8.x'
 
       - name: Build with dotnet
-<<<<<<< HEAD
-        run: dotnet build --configuration Release
-        working-directory: server
-
-      - name: dotnet publish
-        run: dotnet publish --configuration Release --no-build --output ./output
-        working-directory: server
-=======
         run: dotnet build ./server --configuration Release
 
       - name: dotnet publish
         run: dotnet publish ./server -c Release -o "${{env.DOTNET_ROOT}}/myapp"
->>>>>>> c527fb519242c2ea4f3a7c97d504a6fd04cf7282
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
