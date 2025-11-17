@@ -23,6 +23,7 @@ import {
 } from '../atividade-medica.models';
 import { AtividadeMedicaService } from '../atividade-medica.service';
 import { apenasUmMedicoPorConsulta } from '../validators/apenas-um-medico-por-consulta';
+import { parse } from 'date-fns';
 
 @Component({
   selector: 'app-editar-atividade-medica',
@@ -119,7 +120,4 @@ export class EditarAtividadeMedica {
       )
       .subscribe(edicaoObserver);
   }
-}
-function parse(value: any, arg1: string, arg2: string): Date {
-  throw new Error('Function not implemented.');
 }
