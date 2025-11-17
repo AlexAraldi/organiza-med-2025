@@ -11,7 +11,6 @@ import {
   DetalhesAtividadeMedicaModel,
   EditarAtividadeMedicaModel,
   EditarAtividadeMedicaResponseModel,
-  ListarAtividadesMedicasApiResponseModel,
   ListarAtividadesMedicasModel,
   TipoAtividadeMedicaEnum,
 } from './atividade-medica.models';
